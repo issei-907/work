@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 import urllib.request as req
 import requests
+import sys
 
-url='https://pubmed.ncbi.nlm.nih.gov/33332292/'
+x = sys.argv
+url=x[1]
 response=req.urlopen(url)
 
 parse_html=BeautifulSoup(response,'html.parser')
@@ -60,11 +62,17 @@ wc = WordCloud(
     prefer_horizontal=1.0, 
     min_word_length=3,
     max_words=40,
-    font_path='SFNSDisplayCondensed-Bold.otf',)
+    font_path='/System/Library/Fonts/SFNSDisplayCondensed-Bold.otf',)
 wc.generate(text)
 wc.to_file('wc.png')
-plt.imshow(wc)
-plt.axis('off')
-plt.show()
+
+import boto3
+
+BUCKET = 'wc.project'
+KEY = 'wc.png'
+
+s3 = boto3.resource('s3')
+s3.Bucket(BUCKET).upload_file(Filename=KEY, Key=KEY, ExtraArgs={'ACL':'public-read'})
+
 
 

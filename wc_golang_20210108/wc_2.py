@@ -62,7 +62,7 @@ wc = WordCloud(
     prefer_horizontal=1.0, 
     min_word_length=3,
     max_words=40,
-    font_path='/System/Library/Fonts/SFNSDisplayCondensed-Bold.otf',)
+    font_path='SFNSDisplayCondensed-Bold.otf',)
 wc.generate(text)
 wc.to_file('wc.png')
 

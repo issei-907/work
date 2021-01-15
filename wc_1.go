@@ -3,16 +3,18 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"os/exec"
 )
 
 func main() {
-
-	flag.Parse()
-	var url string = flag.Arg(0)
+	//articleidをString型で与える
+	wc("29112865")
+}
+func wc(articleid string) {
+	//var articleid string = "29112865"
+	var url string = "https://pubmed.ncbi.nlm.nih.gov/" + articleid + "/"
 	cmd := exec.Command("python", "wc_2.py", url)
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout

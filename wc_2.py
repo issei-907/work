@@ -25,7 +25,7 @@ title=parse_html.find_all('a')
 url_list=[]
 for i in title:
         url_list.append(i.attrs['href'])
-#DRIVER_PATH = '/Users/satouissei/new10/wc/wc_golang_/chromedriver'
+
 capabilities = DesiredCapabilities.CHROME.copy()
 capabilities['acceptInsecureCerts'] = True
 options = Options()
@@ -36,7 +36,7 @@ options.add_argument('--proxy-server="direct://"');
 options.add_argument('--proxy-bypass-list=*');
 options.add_argument('--start-maximized');
 options.add_argument('--headless'); 
-#executable_path=DRIVER_PATH, 
+
 driver = webdriver.Chrome(ChromeDriverManager(version="87.0.4280.88").install(),chrome_options=options, desired_capabilities=capabilities)
 def pmc_scr(article_url_pmc):
     url_1=','.join(article_url_pmc)

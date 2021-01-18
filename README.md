@@ -27,22 +27,13 @@ $pip install webdriver_manager
 
 
 
-## パッケージを取得する
-
-```
-$ git clone 
-$ go get github.com/maku77/gosample
-```
 
 ## 実行方法
 ```
-$ go run wc_go ‘論文詳細画面のurl’
+wc_1.go のaricleidに論文idを入力して実行する
 ```
 
-## 例
-```
-$ go run wc_go　https://pubmed.ncbi.nlm.nih.gov/21676388/
-```
+
 
 ## s3のURLにwc.pngの画像が保存される
 

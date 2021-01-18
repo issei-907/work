@@ -15,6 +15,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import requests
 import sys
 
+#受け取ったURLを開く
 x = sys.argv
 url=x[1]
 response=req.urlopen(url)
@@ -38,6 +39,8 @@ options.add_argument('--start-maximized');
 options.add_argument('--headless'); 
 
 driver = webdriver.Chrome(ChromeDriverManager(version="87.0.4280.88").install(),chrome_options=options, desired_capabilities=capabilities)
+
+#論文のFreeFULLページがあればそのページの本文をmojiretsuに、なければABSTRACTをmojiretsuに
 def pmc_scr(article_url_pmc):
     url_1=','.join(article_url_pmc)
     url = url_1
@@ -62,14 +65,14 @@ if article_url_pmc:
     a=pmc_scr(article_url_pmc)
 else:
     a=abst(url)
+#文字列を.txtに変換
 f = open('text.txt', 'w')
 f.write(a)
 f.close()
 
+#.txtからワードクラウドを作成
 from wordcloud import WordCloud
 from wordcloud import STOPWORDS
-
-
 with open('text.txt', 'r') as f:
     text = f.read()
 STOPWORDS.add('meta')
@@ -93,8 +96,8 @@ wc = WordCloud(
 wc.generate(text)
 wc.to_file('wc.png')
 
+#画像をs３に保存
 import boto3
-
 BUCKET = 'wc.project'
 KEY = 'wc.png'
 
